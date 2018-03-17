@@ -5,15 +5,18 @@
 #include "./pencildrawer.h"
 
 int main(int argc,char **argv){
-  cv::Mat src_img;
-  if(argc < 2){
-    src_img = cv::imread("./lenna.png");
-  }else{
-    src_img = cv::imread(argv[1]);
+  if(argc < 4){
+    std::cerr << argv[0] << " [image file] [texture file] [lambda]" << std::endl;
+    return -1;
   }
+
+  cv::Mat src_img = cv::imread(argv[1]);
+  cv::Mat texture_img = cv::imread(argv[2],0);
   cv::Mat dst_img;
 
   PencilDrawer pencildrawer;
+  pencildrawer.set_lambda(std::stod(argv[3]));
+  pencildrawer.set_texture(texture_img);
   pencildrawer(src_img,dst_img);
 
   cv::imshow("source image",src_img);
