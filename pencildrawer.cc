@@ -115,6 +115,13 @@ void PencilDrawer::line_drawing(){
   // inverting pixel values and mapping them to [0,1]
   cv::normalize(lineshaping_img,line_img_,0,1,cv::NORM_MINMAX);
   line_img_ = 1.0 - line_img_;
+
+  for(int r=0;r<img_rows_;++r){
+    float* img_ptr = line_img_.ptr<float>(r);
+    for(int c=0;c<img_cols_;++c){
+      img_ptr[c] = std::pow(img_ptr[c],gamma_); // Gamma correction
+    }
+  }
   cv::imshow("line",line_img_);
   cv::waitKey(0);
 }

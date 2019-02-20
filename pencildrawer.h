@@ -24,6 +24,7 @@ class PencilDrawer{
 
   double sigma_b_,sigma_d_,u_a_,u_b_,mu_d_,Z_;
   double lambda_;
+  double gamma_;
 
   void make_tone_histogram();
   void histogram_mathcing(const cv::Mat &src_img,const std::vector<double> &ref_hist,cv::Mat &dst_img);
@@ -32,6 +33,7 @@ class PencilDrawer{
   void line_drawing();
   void pencil_texture();
   void set_lambda(double l){ lambda_ = l ; }
+  void set_gamma(double g){ gamma_ = g ; }
   void set_texture(const cv::Mat &t){
     texture_img_ = t.clone();
   }

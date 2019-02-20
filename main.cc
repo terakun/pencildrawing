@@ -5,8 +5,8 @@
 #include "./pencildrawer.h"
 
 int main(int argc,char **argv){
-  if(argc < 4){
-    std::cerr << argv[0] << " [image file] [texture file] [lambda]" << std::endl;
+  if(argc < 5){
+    std::cerr << argv[0] << " [image file] [texture file] [lambda] [gamma]" << std::endl;
     return -1;
   }
 
@@ -16,6 +16,7 @@ int main(int argc,char **argv){
 
   PencilDrawer pencildrawer;
   pencildrawer.set_lambda(std::stod(argv[3]));
+  pencildrawer.set_gamma(std::stod(argv[4]));
   pencildrawer.set_texture(texture_img);
   pencildrawer(src_img,dst_img);
 
